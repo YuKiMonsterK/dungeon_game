@@ -279,7 +279,7 @@ frame_progress = 0.0274174
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/sword"]
 position = Vector2(-4, 8)
-rotation = -2.28638
+rotation = -2.30383
 scale = Vector2(0.5, 0.5625)
 sprite_frames = SubResource("SpriteFrames_op4w7")
 animation = &"attack1"
