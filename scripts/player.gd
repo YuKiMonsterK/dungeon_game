@@ -29,6 +29,7 @@ func _physics_process(_delta): #每幀執行
 	collision_sword.rotation_degrees = animated_sword.rotation_degrees 
 	animated_sword.flip_h = animated_sprite_2d.flip_h
 	collision_sword.position.x = animated_sword.position.x
+	collision_sword.position.y = animated_sword.position.y
 	
 	direction_x = Input.get_axis("ui_left", "ui_right") #平常為0，按時為-1或1
 	
@@ -68,7 +69,7 @@ func _physics_process(_delta): #每幀執行
 				animated_sword.position.x = animated_sprite_2d.position.x +10
 		else:
 				animated_sword.position.x = animated_sprite_2d.position.x -6
-
+		animated_sword.position.y = animated_sprite_2d.position.y+4
 		animated_sword.rotation_degrees = move_toward(animated_sword.rotation_degrees, rotation_target,rotation_speed)
 		#attack_combo = true
 		if animated_sword.animation != "attack1" :
@@ -77,7 +78,7 @@ func _physics_process(_delta): #每幀執行
 			rotating = false
 			animated_sword.play("default")
 			attack_combo = false
-			
+			animated_sword.position.y = animated_sprite_2d.position.y+8
 			if not animated_sprite_2d.flip_h:
 				animated_sword.rotation_degrees = -132
 				animated_sword.position.x = animated_sprite_2d.position.x-4
