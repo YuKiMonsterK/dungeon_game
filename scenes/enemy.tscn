@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://vdhtldih7p22"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_8n2fc"]
+[ext_resource type="Script" path="res://HitBox.gd" id="2_x3a8a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t7cfx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_massv"]
+size = Vector2(11, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vu18b"]
+size = Vector2(11, 15)
+
+[node name="Enemy" type="CharacterBody2D"]
+light_mask = 4
+script = ExtResource("1_8n2fc")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphics"]
+light_mask = 4
+sprite_frames = SubResource("SpriteFrames_t7cfx")
+
+[node name="HitBox" type="Area2D" parent="Graphics"]
+light_mask = 0
+visibility_layer = 8
+script = ExtResource("2_x3a8a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/HitBox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_massv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+shape = SubResource("RectangleShape2D_vu18b")
