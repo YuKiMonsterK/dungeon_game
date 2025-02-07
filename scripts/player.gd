@@ -7,24 +7,29 @@ var rotating = false
 var rotation_target = 136
 var rotation_speed = 6   
 var direction_x = 0
+var position_target = 0
+var attack_combo = 0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var interact_icon = $interactIcon
 @onready var animated_sword = $sword/AnimatedSprite2D
 @onready var collision_sword = $sword/CollisionShape2D
-@export var attack_combo = false
 
 func tick_physics():
 	interact_icon.visible = interacting_with != null
 
 func _physics_process(_delta): #每幀執行
 	
-	if not animated_sprite_2d.flip_h and not rotating:
+	if not animated_sprite_2d.flip_h and not rotating and attack_combo != 2:
 		animated_sword.rotation_degrees = -132
 		rotation_target = 136
-	elif animated_sprite_2d.flip_h and not rotating:
+		animated_sword.position.x = animated_sprite_2d.position.x-4
+		position_target = animated_sprite_2d.position.x + 20
+	elif animated_sprite_2d.flip_h and not rotating and attack_combo != 2:
 		animated_sword.rotation_degrees = 132
 		rotation_target = -136
+		animated_sword.position.x = animated_sprite_2d.position.x+4
+		position_target = animated_sprite_2d.position.x - 20
 	#移動方面
 	collision_sword.rotation_degrees = animated_sword.rotation_degrees 
 	animated_sword.flip_h = animated_sprite_2d.flip_h
@@ -36,14 +41,14 @@ func _physics_process(_delta): #每幀執行
 	if direction_x == 1:              #right
 		velocity.x = move_toward(velocity.x,direction_x * Speed,acceleration)
 		animated_sprite_2d.play("runLR")
-		animated_sword.position.x = animated_sprite_2d.position.x-4
+		
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.z_index = 0
 		
 	elif direction_x == -1:           #left
 		velocity.x = move_toward(velocity.x,direction_x * Speed,acceleration)
 		animated_sprite_2d.play("runLR")
-		animated_sword.position.x = animated_sprite_2d.position.x+4
+		
 		animated_sprite_2d.flip_h = true
 		animated_sprite_2d.z_index = 1
 
@@ -64,28 +69,54 @@ func _physics_process(_delta): #每幀執行
 
 		
 	#戰鬥方面
-	if rotating:
+	
+	
+	if rotating and attack_combo != 2:
+
 		if not animated_sprite_2d.flip_h:
 				animated_sword.position.x = animated_sprite_2d.position.x +10
 		else:
 				animated_sword.position.x = animated_sprite_2d.position.x -6
 		animated_sword.position.y = animated_sprite_2d.position.y+4
 		animated_sword.rotation_degrees = move_toward(animated_sword.rotation_degrees, rotation_target,rotation_speed)
-		#attack_combo = true
+		
 		if animated_sword.animation != "attack1" :
 			animated_sword.play("attack1")
-		if is_equal_approx(animated_sword.rotation_degrees, rotation_target):
+		if Input.is_action_just_pressed("ui_attack") :
+			attack_combo += 1
+			print("attack_combo + 1, attack_combo = %d"%attack_combo)
+		if is_equal_approx(animated_sword.rotation_degrees, rotation_target) and attack_combo == 1:
 			rotating = false
 			animated_sword.play("default")
-			attack_combo = false
 			animated_sword.position.y = animated_sprite_2d.position.y+8
-			if not animated_sprite_2d.flip_h:
+			attack_combo = 0
+			if not animated_sprite_2d.flip_h :
 				animated_sword.rotation_degrees = -132
 				animated_sword.position.x = animated_sprite_2d.position.x-4
-			else:
+			elif animated_sprite_2d.flip_h :
 				animated_sword.rotation_degrees = 132
 				animated_sword.position.x = animated_sprite_2d.position.x+4
-
+	if attack_combo == 2:
+		#if animated_sword.animation != "attack2" :
+		animated_sword.play("attack2")
+		if not animated_sprite_2d.flip_h:
+			animated_sword.rotation_degrees = 90
+			animated_sword.position.x = move_toward(animated_sword.position.x,position_target,0.5)
+		else:
+			animated_sword.rotation_degrees = -90
+			animated_sword.position.x = move_toward(animated_sword.position.x,position_target,0.5)
+		if is_equal_approx(animated_sword.position.x, position_target):
+			rotating = false
+			animated_sword.play("default")
+			animated_sword.position.y = animated_sprite_2d.position.y+8
+			attack_combo = 0
+			if not animated_sprite_2d.flip_h :
+				animated_sword.rotation_degrees = -132
+				animated_sword.position.x = animated_sprite_2d.position.x-4
+			elif animated_sprite_2d.flip_h :
+				animated_sword.rotation_degrees = 132
+				animated_sword.position.x = animated_sprite_2d.position.x+4
+		
 func _input(_event):     #按任意鍵時執行
 	
 	#移動方面
@@ -97,6 +128,5 @@ func _input(_event):     #按任意鍵時執行
 			animated_sword.rotation_degrees = 46
 		else:
 			animated_sword.rotation_degrees = -46
-
 		rotating = true
 		

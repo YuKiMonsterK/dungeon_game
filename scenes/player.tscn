@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ca1stlhdlrhwx"]
+[gd_scene load_steps=34 format=3 uid="uid://ca1stlhdlrhwx"]
 
 [ext_resource type="Texture2D" uid="uid://cj2b7orlysxef" path="res://assets/character/fHero_.png" id="1_giyew"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tqq7h"]
@@ -163,18 +163,6 @@ region = Rect2(32, 64, 32, 32)
 atlas = ExtResource("5_inkg2")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vedda"]
-atlas = ExtResource("5_inkg2")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mnkp8"]
-atlas = ExtResource("5_inkg2")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_crrad"]
-atlas = ExtResource("5_inkg2")
-region = Rect2(96, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_t7toc"]
 atlas = ExtResource("5_inkg2")
 region = Rect2(0, 0, 32, 32)
@@ -210,15 +198,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ma8au")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vedda")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mnkp8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_crrad")
 }],
 "loop": false,
 "name": &"attack2",
@@ -244,8 +223,6 @@ script = ExtResource("1_tqq7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_tgjyc")
-animation = &"runLR"
-frame_progress = 0.848945
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 light_mask = 2
@@ -282,8 +259,10 @@ position = Vector2(-4, 8)
 rotation = -2.30383
 scale = Vector2(0.5, 0.5625)
 sprite_frames = SubResource("SpriteFrames_op4w7")
-animation = &"attack1"
+animation = &"attack2"
 autoplay = "default"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/sword"]
 position = Vector2(-2.95002, 7.03449)
