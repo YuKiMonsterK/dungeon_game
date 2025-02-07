@@ -12,8 +12,8 @@ var attack_combo = 0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var interact_icon = $interactIcon
-@onready var animated_sword = $sword/AnimatedSprite2D
-@onready var collision_sword = $sword/CollisionShape2D
+@onready var animated_sword = $HitBox/AnimatedSprite2D
+@onready var collision_sword = $HitBox/CollisionShape2D
 
 func tick_physics():
 	interact_icon.visible = interacting_with != null
