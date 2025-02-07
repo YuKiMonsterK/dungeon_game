@@ -94,6 +94,7 @@ animations = [{
 size = Vector2(12, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01ivy"]
+size = Vector2(12, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnm3u"]
 atlas = ExtResource("3_7g5sm")
@@ -219,6 +220,7 @@ size = Vector2(5.65189, 25.0717)
 position = Vector2(0, -12)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
 script = ExtResource("1_tqq7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
@@ -235,6 +237,7 @@ visibility_layer = 0
 script = ExtResource("3_t0u87")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtBox"]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_01ivy")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]

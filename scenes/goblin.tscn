@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqm4y"]
-radius = 4.5
+radius = 5.5
 height = 15.0
 
 [node name="Goblin" instance=ExtResource("1_8dta4")]
@@ -95,16 +95,10 @@ target_position = Vector2(-6, 0)
 position = Vector2(2, 3)
 target_position = Vector2(4, 0)
 
-[node name="HitBox" parent="Graphics" index="3"]
-metadata/_edit_lock_ = true
-
 [node name="CollisionShape2D" parent="Graphics/HitBox" index="0"]
-light_mask = 2
 position = Vector2(-0.5, 4.5)
 shape = SubResource("CapsuleShape2D_oqm4y")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" parent="." index="1"]
-light_mask = 1
 position = Vector2(-0.5, 4.5)
 metadata/_edit_lock_ = true

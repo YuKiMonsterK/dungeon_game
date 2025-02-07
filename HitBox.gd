@@ -9,5 +9,5 @@ func _init():
 	
 func on_area_entered(hurtbox:HurtBox):
 	print("[Hit] %s -> %s" %[owner.name,hurtbox.owner.name] )
-	hit.emit()
-	hurtbox.hit.emit(self)
+	hit.emit(hurtbox)
+	hurtbox.hurt.emit(self)

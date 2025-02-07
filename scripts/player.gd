@@ -97,7 +97,7 @@ func _physics_process(_delta): #每幀執行
 				animated_sword.rotation_degrees = 132
 				animated_sword.position.x = animated_sprite_2d.position.x+4
 	if attack_combo == 2:
-		#if animated_sword.animation != "attack2" :
+	
 		animated_sword.play("attack2")
 		if not animated_sprite_2d.flip_h:
 			animated_sword.rotation_degrees = 90
