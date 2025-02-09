@@ -115,8 +115,6 @@ size = Vector2(11, 15)
 
 [node name="Goblin" instance=ExtResource("1_8dta4")]
 script = ExtResource("2_r7hhx")
-direction = null
-max_speed = null
 
 [node name="AnimatedSprite2D" parent="Graphics" index="0"]
 light_mask = 1

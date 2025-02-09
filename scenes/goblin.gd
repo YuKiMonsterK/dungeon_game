@@ -47,8 +47,10 @@ func _on_hurt_box_hurt(_hitbox):
 func _on_player_attack(flip): #偵測玩家是否按攻擊與其方向
 	if animated_sprite_2d.flip_h != flip:
 		flip_back = false
+		print("not need")
 	else:
 		flip_back = true
+		print("be attacked, need to flip")
 	if flip:
 		attack_from_left = false
 	else:
@@ -58,7 +60,8 @@ func _on_player_attack(flip): #偵測玩家是否按攻擊與其方向
 func _on_animated_sprite_2d_frame_changed(): #受擊完畢
 	if animated_sprite_2d.animation == "hurt" and animated_sprite_2d.frame == animated_sprite_2d.sprite_frames.get_frame_count(animated_sprite_2d.animation) - 1:
 		animated_sprite_2d.play("default")
-	if flip_back:
-		animated_sprite_2d.flip_h = not animated_sprite_2d.flip_h
-		flip_back = false
+		if flip_back:
+			animated_sprite_2d.flip_h = not animated_sprite_2d.flip_h
+			flip_back = false
+			
 		print("end")
