@@ -253,15 +253,13 @@ animations = [{
 [node name="Node2d" type="Node2D"]
 position = Vector2(0, -12)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_tqq7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_tgjyc")
-animation = &"hurt"
-frame = 3
-frame_progress = 1.0
+animation = &"runLR"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 light_mask = 2
@@ -274,13 +272,12 @@ collision_mask = 16
 script = ExtResource("5_fuyg5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/HitBox"]
-position = Vector2(8, 6)
-rotation = 1.53065
+position = Vector2(-6, 8)
+rotation = -2.96706
 scale = Vector2(0.5, 0.5625)
 sprite_frames = SubResource("SpriteFrames_op4w7")
-animation = &"attack2"
+animation = &"attack1"
 autoplay = "default"
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
 position = Vector2(10.0454, 1.83183)

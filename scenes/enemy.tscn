@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://vdhtldih7p22"]
+[gd_scene load_steps=8 format=3 uid="uid://vdhtldih7p22"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_8n2fc"]
 [ext_resource type="Script" path="res://HitBox.gd" id="2_x3a8a"]
 [ext_resource type="Script" path="res://HurtBox.gd" id="3_7768y"]
+[ext_resource type="Script" path="res://scripts/Stats.gd" id="4_as6nn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7cfx"]
 
@@ -42,3 +43,6 @@ script = ExtResource("3_7768y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vu18b")
+
+[node name="stats" type="Node" parent="."]
+script = ExtResource("4_as6nn")
