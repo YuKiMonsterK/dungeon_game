@@ -104,7 +104,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,7 +125,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0ob6"]
-size = Vector2(11, 15)
+size = Vector2(10, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q88y0"]
 atlas = ExtResource("5_inkg2")
@@ -209,7 +209,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1x11"]
-size = Vector2(25, 18.3971)
+size = Vector2(5.65189, 21.4042)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01ivy"]
 size = Vector2(10, 15)
@@ -265,7 +265,7 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 light_mask = 2
-position = Vector2(-0.5, 4)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_l0ob6")
 
 [node name="HitBox" type="Area2D" parent="CharacterBody2D"]
@@ -274,27 +274,18 @@ collision_mask = 16
 script = ExtResource("5_fuyg5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/HitBox"]
-position = Vector2(8, 6)
-rotation = 1.53065
+position = Vector2(-4, 8)
+rotation = -2.30383
 scale = Vector2(0.5, 0.5625)
 sprite_frames = SubResource("SpriteFrames_op4w7")
-animation = &"attack2"
+animation = &"attack1"
 autoplay = "default"
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
-position = Vector2(10.0454, 1.83183)
-rotation = 0.364774
+position = Vector2(-4.27092, 8.24912)
+rotation = -2.31431
 scale = Vector2(0.5, 0.5625)
 shape = SubResource("RectangleShape2D_h1x11")
-disabled = true
-debug_color = Color(1, 1, 1, 0.42)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
-position = Vector2(14, 4)
-scale = Vector2(0.75, 0.2)
-shape = SubResource("RectangleShape2D_h1x11")
-disabled = true
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="HurtBox" type="Area2D" parent="CharacterBody2D"]
@@ -307,7 +298,6 @@ script = ExtResource("3_t0u87")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtBox"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_01ivy")
-metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(1.5, 1.5)
