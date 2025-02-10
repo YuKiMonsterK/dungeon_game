@@ -922,5 +922,3 @@ position = Vector2(-15, -17)
 
 [node name="Goblin" parent="." instance=ExtResource("5_xa62b")]
 position = Vector2(65, -57)
-direction = 1
-max_speed = 30.0

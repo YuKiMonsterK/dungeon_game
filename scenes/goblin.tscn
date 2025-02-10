@@ -1,8 +1,24 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctrhhrmqjqepo"]
+[gd_scene load_steps=23 format=3 uid="uid://ctrhhrmqjqepo"]
 
 [ext_resource type="PackedScene" uid="uid://vdhtldih7p22" path="res://scenes/enemy.tscn" id="1_8dta4"]
 [ext_resource type="Script" path="res://scenes/goblin.gd" id="2_r7hhx"]
 [ext_resource type="Texture2D" uid="uid://eseh3u0waq5t" path="res://assets/character/goblin_.png" id="2_ua3f7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2civ"]
+atlas = ExtResource("2_ua3f7")
+region = Rect2(0, 120, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d57tv"]
+atlas = ExtResource("2_ua3f7")
+region = Rect2(24, 120, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dse8v"]
+atlas = ExtResource("2_ua3f7")
+region = Rect2(48, 120, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul3ca"]
+atlas = ExtResource("2_ua3f7")
+region = Rect2(72, 120, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxljt"]
 atlas = ExtResource("2_ua3f7")
@@ -54,6 +70,23 @@ region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a0h2g"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2civ")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d57tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dse8v")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ul3ca")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dxljt")
@@ -119,7 +152,7 @@ script = ExtResource("2_r7hhx")
 [node name="AnimatedSprite2D" parent="Graphics" index="0"]
 light_mask = 1
 sprite_frames = SubResource("SpriteFrames_a0h2g")
-animation = &"hurt"
+animation = &"dead"
 autoplay = "default"
 metadata/_edit_lock_ = true
 
