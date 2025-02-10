@@ -17,7 +17,7 @@
 ```mermaid
 gantt
     title 仿 DND 小遊戲實作
-    dateFormat  YYYY-MM-DD
+    dateFormat  %m/%d
     section 基本畫面
     ✅ 人物場景基本節點:done, task1, 2025-01-10, 2025-01-10
     ✅ 主場景基本節點 :done, task2, 2025-01-11, 2025-01-15
