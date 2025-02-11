@@ -258,6 +258,7 @@ animations = [{
 position = Vector2(0, -12)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_tqq7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]

@@ -143,14 +143,18 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqm4y"]
-radius = 5.5
-height = 15.0
+radius = 3.5
+height = 19.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4qw"]
-size = Vector2(9, 14)
+size = Vector2(7, 11)
 
 [node name="Goblin" instance=ExtResource("1_8dta4")]
+collision_layer = 4
 script = ExtResource("2_7heqy")
+
+[node name="Graphics" parent="." index="0"]
+light_mask = 0
 
 [node name="AnimatedSprite2D" parent="Graphics" index="0"]
 sprite_frames = SubResource("SpriteFrames_a0h2g")
@@ -165,21 +169,18 @@ target_position = Vector2(-6, 0)
 position = Vector2(2, 3)
 target_position = Vector2(4, 0)
 
-[node name="HitBox" parent="Graphics" index="3"]
-collision_layer = 16
-collision_mask = 0
-
 [node name="CollisionShape2D" parent="Graphics/HitBox" index="0"]
 position = Vector2(-0.5, 4.5)
 shape = SubResource("CapsuleShape2D_oqm4y")
 
 [node name="CollisionShape2D" parent="Graphics/HurtBox" index="0"]
-position = Vector2(-0.5, 5)
+position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_1c4qw")
 debug_color = Color(0.817953, 0.352479, 0.525388, 0.42)
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-0.5, 4.5)
+light_mask = 0
+position = Vector2(0, 4.5)
 
 [connection signal="animation_finished" from="Graphics/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="Graphics/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
