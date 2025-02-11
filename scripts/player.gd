@@ -8,7 +8,7 @@ var rotation_target = 136
 var direction_x = 0
 var position_target = 0
 var attack_combo = 0
-var hurt_back = 0
+var hurt_target = 0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var interact_icon = $interactIcon
@@ -17,6 +17,8 @@ var hurt_back = 0
 @onready var hurt_box = $HurtBox
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var collision_sword_2 = $HitBox/CollisionShape2D2
+@onready var Stats = $stats
+@onready var camera_2d = $Camera2D
 
 signal attack_flip(flip)
 
@@ -51,13 +53,13 @@ func _physics_process(_delta): #每幀執行
 	
 	direction_x = Input.get_axis("ui_left", "ui_right") #平常為0，按時為-1或1
 	
-	if direction_x == 1:              #right
+	if direction_x == 1 and not hurt_target:              #right
 		velocity.x = move_toward(velocity.x,direction_x * Speed,acceleration)
 		animated_sprite_2d.play("runLR")
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.z_index = 0
 		
-	elif direction_x == -1:           #left
+	elif direction_x == -1 and not hurt_target:           #left
 		velocity.x = move_toward(velocity.x,direction_x * Speed,acceleration)
 		animated_sprite_2d.play("runLR")
 		animated_sprite_2d.flip_h = true
@@ -68,12 +70,12 @@ func _physics_process(_delta): #每幀執行
 		velocity.x = move_toward(velocity.x, 0, Speed)
 		
 	var direction_y = Input.get_axis("ui_up", "ui_down")
-	if direction_y:
+	if direction_y and not hurt_target:
 		velocity.y = move_toward(velocity.y,direction_y * Speed,acceleration)
 		animated_sprite_2d.play("runLR")
-	else:
+	elif not hurt_target:
 		velocity.y = move_toward(velocity.y, 0, Speed)
-	if not direction_x and not direction_y and hurt_back == 0:
+	if not direction_x and not direction_y and not hurt_target:
 		animated_sprite_2d.play("default")
 	move_and_slide()
 	
@@ -128,20 +130,21 @@ func _physics_process(_delta): #每幀執行
 			elif animated_sprite_2d.flip_h :
 				animated_sword.rotation_degrees = 170
 				animated_sword.position.x = animated_sprite_2d.position.x+4
-	if hurt_back != 0:
-		if animated_sprite_2d.animation != "hurt" :
+		
+	if hurt_target != 0:
+		animated_sprite_2d.position.x = move_toward(animated_sprite_2d.position.x,hurt_target,0.1)
+		hurt_box.monitorable = false
+		if Stats.health <= 0:
+			animated_sprite_2d.play("dead")
+		elif is_equal_approx(animated_sprite_2d.position.x,hurt_target):
+			hurt_target = 0
+			animated_sprite_2d.play("default")
+			print("%d life"%Stats.health)
+			hurt_box.monitorable = true
+		else:
 			animated_sprite_2d.play("hurt")
-		if is_equal_approx(animated_sprite_2d.position.x,hurt_back):
-			hurt_back = 0
-			animated_sprite_2d.position.x = 0
-		#collision_shape_2d.visibility_layer = #########
-		
-		animated_sprite_2d.position.x = move_toward(animated_sprite_2d.position.x,hurt_back,0.1)
-		
+			
 func _input(_event):     #按任意鍵時執行
-	
-	#移動方面
-	
 	
 	#戰鬥方面
 	if Input.is_action_just_pressed("ui_attack") and not rotating:
@@ -154,8 +157,20 @@ func _input(_event):     #按任意鍵時執行
 		attack_flip.emit(flip) #傳給怪物
 		
 func _on_hurt_box_hurt(_hitbox):
+	Stats.health -= 1
 	if not animated_sprite_2d.flip_h:
-			hurt_back = animated_sprite_2d.position.x - 5
+		hurt_target = animated_sprite_2d.position.x - 5
 	else:
-		hurt_back = animated_sprite_2d.position.x + 5
+		hurt_target = animated_sprite_2d.position.x + 5
 	
+	
+		
+		
+
+func _on_animated_sprite_2d_animation_finished():
+	if animated_sprite_2d.animation == "dead":
+		camera_2d.position.x = animated_sprite_2d.position.x
+		camera_2d.position.y = animated_sprite_2d.position.y
+		queue_free()
+		animated_sword.position.y = -11
+		animated_sword.rotation_degrees = -90

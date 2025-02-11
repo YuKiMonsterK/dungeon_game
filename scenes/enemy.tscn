@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://vdhtldih7p22"]
 
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_8n2fc"]
-[ext_resource type="Script" path="res://HitBox.gd" id="2_x3a8a"]
-[ext_resource type="Script" path="res://HurtBox.gd" id="3_7768y"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_o85ym"]
+[ext_resource type="Script" path="res://scripts/HitBox.gd" id="2_nqly8"]
+[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="3_4pfvx"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="4_as6nn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7cfx"]
@@ -15,33 +15,32 @@ size = Vector2(11, 15)
 
 [node name="Enemy" type="CharacterBody2D"]
 light_mask = 4
-script = ExtResource("1_8n2fc")
+script = ExtResource("1_o85ym")
 
 [node name="Graphics" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphics"]
-light_mask = 4
+light_mask = 0
 sprite_frames = SubResource("SpriteFrames_t7cfx")
 
 [node name="HitBox" type="Area2D" parent="Graphics"]
-light_mask = 0
-visibility_layer = 8
-script = ExtResource("2_x3a8a")
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_nqly8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/HitBox"]
-light_mask = 0
-visibility_layer = 0
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_massv")
 
 [node name="HurtBox" type="Area2D" parent="Graphics"]
-light_mask = 16
-visibility_layer = 0
-script = ExtResource("3_7768y")
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_4pfvx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/HurtBox"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
 shape = SubResource("RectangleShape2D_vu18b")
 
 [node name="stats" type="Node" parent="."]

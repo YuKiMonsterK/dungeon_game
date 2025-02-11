@@ -1,11 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://ca1stlhdlrhwx"]
+[gd_scene load_steps=40 format=3 uid="uid://ca1stlhdlrhwx"]
 
 [ext_resource type="Texture2D" uid="uid://cj2b7orlysxef" path="res://assets/character/fHero_.png" id="1_giyew"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tqq7h"]
 [ext_resource type="Texture2D" uid="uid://ctfrqybrayp6u" path="res://assets/scene/gdb-keyboard-2.png" id="3_7g5sm"]
-[ext_resource type="Script" path="res://HurtBox.gd" id="3_t0u87"]
-[ext_resource type="Script" path="res://HitBox.gd" id="5_fuyg5"]
+[ext_resource type="Script" path="res://scripts/HitBox.gd" id="3_skbli"]
+[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="5_be8cs"]
 [ext_resource type="Texture2D" uid="uid://btu1cnq7e08ns" path="res://assets/character/hero/sword_ [wood].png" id="5_inkg2"]
+[ext_resource type="Script" path="res://scripts/Stats.gd" id="7_67ss2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xafto"]
 atlas = ExtResource("1_giyew")
@@ -71,10 +72,13 @@ animations = [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_15iun")
 }, {
-"duration": 3.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_wpeu3")
+}, {
+"duration": 1.0,
+"texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -104,7 +108,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 3.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,7 +129,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0ob6"]
-size = Vector2(11, 15)
+size = Vector2(12, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q88y0"]
 atlas = ExtResource("5_inkg2")
@@ -212,7 +216,7 @@ animations = [{
 size = Vector2(25, 18.3971)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01ivy"]
-size = Vector2(10, 15)
+size = Vector2(9, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnm3u"]
 atlas = ExtResource("3_7g5sm")
@@ -254,26 +258,26 @@ animations = [{
 position = Vector2(0, -12)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
-collision_layer = 2
 script = ExtResource("1_tqq7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+light_mask = 0
 sprite_frames = SubResource("SpriteFrames_tgjyc")
-animation = &"runLR"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 light_mask = 2
-position = Vector2(-0.5, 4)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_l0ob6")
 
 [node name="HitBox" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 16
-script = ExtResource("5_fuyg5")
+script = ExtResource("3_skbli")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/HitBox"]
-position = Vector2(-6, 8)
-rotation = -2.96706
+position = Vector2(-4, 8)
+rotation = -3.04909
 scale = Vector2(0.5, 0.5625)
 sprite_frames = SubResource("SpriteFrames_op4w7")
 animation = &"attack1"
@@ -295,15 +299,14 @@ disabled = true
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="HurtBox" type="Area2D" parent="CharacterBody2D"]
-light_mask = 8
-visibility_layer = 0
 collision_layer = 8
 collision_mask = 0
-script = ExtResource("3_t0u87")
+script = ExtResource("5_be8cs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtBox"]
-position = Vector2(0, 3.5)
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_01ivy")
+debug_color = Color(0.817953, 0.352479, 0.525388, 0.42)
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
@@ -321,4 +324,8 @@ autoplay = "default"
 frame = 2
 frame_progress = 0.0274174
 
+[node name="stats" type="Node" parent="CharacterBody2D"]
+script = ExtResource("7_67ss2")
+
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="hurt" from="CharacterBody2D/HurtBox" to="CharacterBody2D" method="_on_hurt_box_hurt"]
