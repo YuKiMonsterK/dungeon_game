@@ -15,10 +15,11 @@ var hurt_target = 0
 @onready var animated_sword = $HitBox/AnimatedSprite2D
 @onready var collision_sword = $HitBox/CollisionShape2D
 @onready var hurt_box = $HurtBox
-@onready var collision_shape_2d = $CollisionShape2D
+@onready var collision_hurt_box = $HurtBox/CollisionShape2D
 @onready var collision_sword_2 = $HitBox/CollisionShape2D2
 @onready var Stats = $stats
 @onready var camera_2d = $Camera2D
+@onready var collision_shape_2d = $CollisionShape2D
 
 signal attack_flip(flip)
 
@@ -47,8 +48,8 @@ func _physics_process(_delta): #每幀執行
 	#移動方面
 	
 	animated_sword.flip_h = animated_sprite_2d.flip_h
+	collision_hurt_box.position.x = animated_sprite_2d.position.x
 	collision_shape_2d.position.x = animated_sprite_2d.position.x
-	
 	
 	
 	direction_x = Input.get_axis("ui_left", "ui_right") #平常為0，按時為-1或1
@@ -89,7 +90,7 @@ func _physics_process(_delta): #每幀執行
 		else:
 				animated_sword.position.x = animated_sprite_2d.position.x -6
 		animated_sword.position.y = animated_sprite_2d.position.y+4
-		collision_sword.disabled = false
+		#collision_hurt_box.disabled = true
 		animated_sword.rotation_degrees = move_toward(animated_sword.rotation_degrees, rotation_target,6)
 		
 		if animated_sword.animation != "attack1":
@@ -101,7 +102,8 @@ func _physics_process(_delta): #每幀執行
 			rotating = false
 			animated_sword.play("default")
 			attack_combo = 0
-			collision_sword.disabled = true
+			
+			
 			animated_sword.position.y = 8
 			if not animated_sprite_2d.flip_h :
 				animated_sword.rotation_degrees = -170
@@ -145,7 +147,6 @@ func _physics_process(_delta): #每幀執行
 			animated_sprite_2d.play("hurt")
 			
 func _input(_event):     #按任意鍵時執行
-	
 	#戰鬥方面
 	if Input.is_action_just_pressed("ui_attack") and not rotating:
 		if not animated_sprite_2d.flip_h:

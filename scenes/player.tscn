@@ -216,7 +216,7 @@ animations = [{
 size = Vector2(25, 18.3971)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01ivy"]
-size = Vector2(9, 13)
+size = Vector2(9, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnm3u"]
 atlas = ExtResource("3_7g5sm")
@@ -305,7 +305,7 @@ collision_mask = 0
 script = ExtResource("5_be8cs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtBox"]
-position = Vector2(0.5, 3.5)
+position = Vector2(0.5, 4)
 shape = SubResource("RectangleShape2D_01ivy")
 debug_color = Color(0.817953, 0.352479, 0.525388, 0.42)
 metadata/_edit_lock_ = true
