@@ -1,8 +1,9 @@
+class_name Player
 extends CharacterBody2D
 
 const Speed = 100.0
 const acceleration = Speed / 0.2
-var interacting_with : Interactable
+var interacting_with : Interactable = null
 var rotating = false
 var rotation_target = 136
 var direction_x = 0
@@ -23,11 +24,12 @@ var hurt_target = 0
 
 signal attack_flip(flip)
 
-func tick_physics():
-	interact_icon.visible = interacting_with != null
-
+func _unhandled_input(event : InputEvent):
+	if event.is_action_pressed("interact") and interacting_with:
+		interacting_with.interact()
 
 func _physics_process(_delta): #每幀執行
+	interact_icon.visible = interacting_with != null
 	
 	if not animated_sprite_2d.flip_h and not rotating and attack_combo != 2:
 		animated_sword.rotation_degrees = -170
@@ -92,7 +94,7 @@ func _physics_process(_delta): #每幀執行
 		animated_sword.position.y = animated_sprite_2d.position.y+4
 		#collision_hurt_box.disabled = true
 		animated_sword.rotation_degrees = move_toward(animated_sword.rotation_degrees, rotation_target,6)
-		
+		collision_sword.disabled = false
 		if animated_sword.animation != "attack1":
 			animated_sword.play("attack1")
 		if Input.is_action_just_pressed("ui_attack") :
@@ -102,7 +104,7 @@ func _physics_process(_delta): #每幀執行
 			rotating = false
 			animated_sword.play("default")
 			attack_combo = 0
-			
+			collision_sword.disabled = true
 			
 			animated_sword.position.y = 8
 			if not animated_sprite_2d.flip_h :
@@ -164,10 +166,6 @@ func _on_hurt_box_hurt(_hitbox):
 	else:
 		hurt_target = animated_sprite_2d.position.x + 5
 	
-	
-		
-		
-
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite_2d.animation == "dead":
 		camera_2d.position.x = animated_sprite_2d.position.x

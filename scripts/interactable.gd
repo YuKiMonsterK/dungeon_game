@@ -1,23 +1,24 @@
 class_name Interactable
 extends Area2D
-@onready var player = $player
+
 signal interacted
 
 
 func _init():
 	collision_layer = 0
 	collision_mask = 0
-	set_collision_mask_value(1,true)
+	set_collision_mask_value(2,true)
 	
-	body_entered.connect(on_body_entered)
-	body_exited.connect(on_body_exited)
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 
 func interact():
 	print("[Interacted] %s" % name)
 	interacted.emit()
 
-func on_body_entered():
+func _on_body_entered(player: Player):
 	player.interacting_with = self
+	print("in")
 
-func on_body_exited():
+func _on_body_exited(player: Player):
 	player.interacting_with = null

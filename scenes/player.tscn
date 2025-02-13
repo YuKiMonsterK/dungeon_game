@@ -255,6 +255,7 @@ animations = [{
 }]
 
 [node name="Node2d" type="Node2D"]
+light_mask = 2
 position = Vector2(0, -12)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
@@ -262,7 +263,6 @@ collision_layer = 2
 script = ExtResource("1_tqq7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-light_mask = 0
 sprite_frames = SubResource("SpriteFrames_tgjyc")
 animation = &"dead"
 
