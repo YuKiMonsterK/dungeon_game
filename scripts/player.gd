@@ -31,7 +31,7 @@ func _unhandled_input(event : InputEvent):
 func _physics_process(_delta): #每幀執行
 	interact_icon.visible = interacting_with != null
 	
-	if not animated_sprite_2d.flip_h and not rotating and attack_combo != 2:
+	if not animated_sprite_2d.flip_h and not rotating and attack_combo != 2 and animated_sprite_2d.animation != "dead":
 		animated_sword.rotation_degrees = -170
 		rotation_target = 136
 		animated_sword.position.x = animated_sprite_2d.position.x-4
@@ -39,7 +39,7 @@ func _physics_process(_delta): #每幀執行
 		collision_sword.position.x = animated_sprite_2d.position.x +9
 		collision_sword_2.position.x = animated_sprite_2d.position.x +14
 		animated_sword.frame = animated_sprite_2d.frame
-	elif animated_sprite_2d.flip_h and not rotating and attack_combo != 2:
+	elif animated_sprite_2d.flip_h and not rotating and attack_combo != 2 and animated_sprite_2d.animation != "dead":
 		animated_sword.rotation_degrees = 170
 		rotation_target = -136
 		animated_sword.position.x = animated_sprite_2d.position.x+4
@@ -168,8 +168,7 @@ func _on_hurt_box_hurt(_hitbox):
 	
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite_2d.animation == "dead":
-		camera_2d.position.x = animated_sprite_2d.position.x
-		camera_2d.position.y = animated_sprite_2d.position.y
-		queue_free()
-		animated_sword.position.y = -11
 		animated_sword.rotation_degrees = -90
+		animated_sword.position.y = animated_sprite_2d.position.y + 10
+		animated_sprite_2d.visible = false
+

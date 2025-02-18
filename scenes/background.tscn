@@ -930,7 +930,7 @@ position = Vector2(25, -149)
 
 [node name="CollisionShape2D" parent="flag_1" index="0"]
 position = Vector2(5.96046e-08, 4)
-scale = Vector2(0.725, 1)
+scale = Vector2(1.21, 1.14)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="flag_1"]
 position = Vector2(-66, 4)
