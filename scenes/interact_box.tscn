@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3gxo3axu7680"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_uh0rp"]
+[ext_resource type="FontFile" uid="uid://4tn5gkq4fdcv" path="res://assets/Cubic_11.ttf" id="2_fc053"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ps8r"]
+size = Vector2(12, 18)
+
+[node name="intract_box" type="Area2D"]
+script = ExtResource("1_uh0rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1ps8r")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 82.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("2_fc053")
+theme_override_font_sizes/font_size = 10
+text = "test"
+language = "cch_TW"

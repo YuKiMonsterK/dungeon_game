@@ -254,29 +254,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2d" type="Node2D"]
-light_mask = 2
-position = Vector2(0, -12)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_tqq7h")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tgjyc")
 animation = &"dead"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 2
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_l0ob6")
 
-[node name="HitBox" type="Area2D" parent="CharacterBody2D"]
+[node name="HitBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("3_skbli")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/HitBox"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HitBox"]
 position = Vector2(-4, 8)
 rotation = -3.04909
 scale = Vector2(0.5, 0.5625)
@@ -284,7 +280,7 @@ sprite_frames = SubResource("SpriteFrames_op4w7")
 animation = &"attack1"
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(10.0454, 1.83183)
 rotation = 0.364774
 scale = Vector2(0.5, 0.5625)
@@ -292,31 +288,31 @@ shape = SubResource("RectangleShape2D_h1x11")
 disabled = true
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(14, 4)
 scale = Vector2(0.75, 0.2)
 shape = SubResource("RectangleShape2D_h1x11")
 disabled = true
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="HurtBox" type="Area2D" parent="CharacterBody2D"]
+[node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("5_be8cs")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.5, 4)
 shape = SubResource("RectangleShape2D_01ivy")
 debug_color = Color(0.817953, 0.352479, 0.525388, 0.42)
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[node name="interactIcon" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="interactIcon" type="AnimatedSprite2D" parent="."]
 z_index = 5
 position = Vector2(0, -12)
 scale = Vector2(0.75, 0.75)
@@ -325,8 +321,8 @@ autoplay = "default"
 frame = 2
 frame_progress = 0.0274174
 
-[node name="stats" type="Node" parent="CharacterBody2D"]
+[node name="stats" type="Node" parent="."]
 script = ExtResource("7_67ss2")
 
-[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="hurt" from="CharacterBody2D/HurtBox" to="CharacterBody2D" method="_on_hurt_box_hurt"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
