@@ -36,13 +36,13 @@ func _physics_process(_delta): #每幀執行
 		rotation_target = 136
 		animated_sword.position.x = animated_sprite_2d.position.x-4
 		position_target = animated_sprite_2d.position.x + 20
-		collision_sword.position.x = animated_sprite_2d.position.x +9
+		collision_sword.position.x = animated_sprite_2d.position.x +10
 		collision_sword_2.position.x = animated_sprite_2d.position.x +14
 		animated_sword.frame = animated_sprite_2d.frame
 	elif animated_sprite_2d.flip_h and not rotating and attack_combo != 2 and animated_sprite_2d.animation != "dead":
 		animated_sword.rotation_degrees = 170
 		rotation_target = -136
-		animated_sword.position.x = animated_sprite_2d.position.x+4
+		animated_sword.position.x = animated_sprite_2d.position.x+6
 		position_target = animated_sprite_2d.position.x - 20
 		collision_sword.position.x = animated_sprite_2d.position.x -9
 		collision_sword_2.position.x = animated_sprite_2d.position.x - 14

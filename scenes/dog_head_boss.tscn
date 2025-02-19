@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://13fq1gnmgwng"]
+
+[ext_resource type="PackedScene" uid="uid://bmeesqq24jw5s" path="res://scenes/NPC.tscn" id="1_amvcu"]
+[ext_resource type="Texture2D" uid="uid://bnk7ncrvh1vx4" path="res://assets/character/devil_.png" id="2_emgim"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rexeo"]
+atlas = ExtResource("2_emgim")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa6ec"]
+atlas = ExtResource("2_emgim")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhbaw"]
+atlas = ExtResource("2_emgim")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hej0s"]
+atlas = ExtResource("2_emgim")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ic33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rexeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa6ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhbaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hej0s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfda3"]
+radius = 7.0
+height = 18.0
+
+[node name="dog_head_boss" instance=ExtResource("1_amvcu")]
+
+[node name="AnimatedSprite2D" parent="Graphics" index="0"]
+sprite_frames = SubResource("SpriteFrames_8ic33")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="Graphics/HitBox" index="0"]
+position = Vector2(1, 4.5)
+
+[node name="CollisionShape2D" parent="Graphics/HurtBox" index="0"]
+position = Vector2(1, 4)
+shape = SubResource("CapsuleShape2D_wfda3")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 4.5)

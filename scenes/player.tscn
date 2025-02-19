@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ca1stlhdlrhwx"]
+[gd_scene load_steps=42 format=3 uid="uid://ca1stlhdlrhwx"]
 
 [ext_resource type="Texture2D" uid="uid://cj2b7orlysxef" path="res://assets/character/fHero_.png" id="1_giyew"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tqq7h"]
@@ -167,6 +167,10 @@ region = Rect2(0, 64, 32, 32)
 atlas = ExtResource("5_inkg2")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptq6y"]
+atlas = ExtResource("5_inkg2")
+region = Rect2(0, 2, 32, 31)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_op4w7"]
 animations = [{
 "frames": [{
@@ -206,11 +210,18 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t7toc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptq6y")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txyri"]
+radius = 3.6641
+height = 24.3144
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1x11"]
 size = Vector2(25, 18.3971)
@@ -277,14 +288,14 @@ position = Vector2(-4, 8)
 rotation = -3.04909
 scale = Vector2(0.5, 0.5625)
 sprite_frames = SubResource("SpriteFrames_op4w7")
-animation = &"attack1"
 autoplay = "default"
+frame_progress = 0.308416
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(10.0454, 1.83183)
-rotation = 0.364774
-scale = Vector2(0.5, 0.5625)
-shape = SubResource("RectangleShape2D_h1x11")
+position = Vector2(16, 1.8)
+rotation = -1.16239
+scale = Vector2(1.36, 0.553)
+shape = SubResource("CapsuleShape2D_txyri")
 disabled = true
 debug_color = Color(1, 1, 1, 0.42)
 
