@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8ia72efg8vk6"]
+[gd_scene load_steps=15 format=3 uid="uid://c04aoaqg467qo"]
 
 [ext_resource type="PackedScene" uid="uid://ca1stlhdlrhwx" path="res://scenes/player.tscn" id="1_mgiqu"]
 [ext_resource type="Texture2D" uid="uid://dnnpd2c21hcvo" path="res://assets/scene/dungeon_.png" id="2_cmaq5"]

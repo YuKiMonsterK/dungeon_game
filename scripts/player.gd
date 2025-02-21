@@ -27,7 +27,8 @@ signal attack_flip(flip)
 func _unhandled_input(event : InputEvent):
 	if event.is_action_pressed("interact") and interacting_with:
 		interacting_with.interact()
-
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/item.dialogue"),"start")
+		return
 func _physics_process(_delta): #每幀執行
 	interact_icon.visible = interacting_with != null
 	
