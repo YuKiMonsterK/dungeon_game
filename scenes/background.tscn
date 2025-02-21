@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8ia72efg8vk6"]
+[gd_scene load_steps=15 format=3 uid="uid://b8ia72efg8vk6"]
 
 [ext_resource type="PackedScene" uid="uid://ca1stlhdlrhwx" path="res://scenes/player.tscn" id="1_mgiqu"]
 [ext_resource type="Texture2D" uid="uid://dnnpd2c21hcvo" path="res://assets/scene/dungeon_.png" id="2_cmaq5"]
@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bo45ldl7xvic1" path="res://assets/scene/dungeonDecoration_1.png" id="3_t827e"]
 [ext_resource type="PackedScene" uid="uid://ctrhhrmqjqepo" path="res://scenes/goblin.tscn" id="5_xa62b"]
 [ext_resource type="PackedScene" uid="uid://b3gxo3axu7680" path="res://scenes/interact_box.tscn" id="6_df118"]
-[ext_resource type="Texture2D" uid="uid://wya2w5atbuml" path="res://assets/dialog_box.png" id="7_bgnnk"]
 [ext_resource type="PackedScene" uid="uid://13fq1gnmgwng" path="res://scenes/dog_head_boss.tscn" id="8_87sqa"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="9_s0xl4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f26yg"]
 texture = ExtResource("3_gdfsb")
@@ -944,6 +944,9 @@ sources/4 = SubResource("TileSetAtlasSource_e5vp3")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smqnl"]
 size = Vector2(14, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c72ds"]
+size = Vector2(20, 27)
+
 [node name="world" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -960,13 +963,6 @@ layer_2/tile_data = PackedInt32Array(-458748, 262146, 1, -655361, 851970, 1, 655
 
 [node name="player" parent="." instance=ExtResource("1_mgiqu")]
 position = Vector2(-15, -17)
-
-[node name="Sprite2D" type="Sprite2D" parent="player"]
-visible = false
-z_index = 100
-position = Vector2(0, 44)
-scale = Vector2(0.249512, 0.223633)
-texture = ExtResource("7_bgnnk")
 
 [node name="Goblin" parent="." instance=ExtResource("5_xa62b")]
 position = Vector2(65, -57)
@@ -1004,7 +1000,13 @@ scale = Vector2(2.745, 1.57)
 
 [node name="dog_head_boss" parent="." instance=ExtResource("8_87sqa")]
 position = Vector2(-149, -420)
-collision_layer = 1
+
+[node name="dog_head_boss" type="Area2D" parent="dog_head_boss"]
+script = ExtResource("9_s0xl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dog_head_boss/dog_head_boss"]
+position = Vector2(1, 4)
+shape = SubResource("RectangleShape2D_c72ds")
 
 [editable path="box_1"]
 [editable path="fireplace_1"]
