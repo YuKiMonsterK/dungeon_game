@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://kmj2kotg4ck5" path="res://dialogue/item.dialogue" id="2_amnd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ps8r"]
-size = Vector2(12, 18)
+size = Vector2(11.0761, 21.2581)
 
 [node name="intract_box" type="Area2D"]
 script = ExtResource("1_uh0rp")

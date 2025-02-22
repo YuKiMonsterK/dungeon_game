@@ -1,8 +1,0 @@
-~ start
-player: 預設訊息
-	
-=> END
-~ box1
-player: 這是箱子
-	
-=> END
