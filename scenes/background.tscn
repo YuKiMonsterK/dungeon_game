@@ -970,6 +970,7 @@ position = Vector2(65, -57)
 
 [node name="box_1" parent="." instance=ExtResource("6_df118")]
 position = Vector2(-25, -243)
+dialogue_resource = "res://dialogue/item.dialogue"
 
 [node name="CollisionShape2D" parent="box_1" index="0"]
 position = Vector2(-15, -8)
@@ -977,12 +978,14 @@ scale = Vector2(1.97, 1.61)
 
 [node name="fireplace_1" parent="." instance=ExtResource("6_df118")]
 position = Vector2(8, -258)
+dialogue_resource = "res://dialogue/item.dialogue"
 
 [node name="CollisionShape2D" parent="fireplace_1" index="0"]
 scale = Vector2(1.83, 1.85)
 
 [node name="flag_1" parent="." instance=ExtResource("6_df118")]
 position = Vector2(25, -149)
+dialogue_resource = "res://dialogue/item.dialogue"
 
 [node name="CollisionShape2D" parent="flag_1" index="0"]
 position = Vector2(5.96046e-08, 4)
@@ -994,6 +997,7 @@ shape = SubResource("RectangleShape2D_smqnl")
 
 [node name="door_1" parent="." instance=ExtResource("6_df118")]
 position = Vector2(-35, 25)
+dialogue_resource = "res://dialogue/item.dialogue"
 
 [node name="CollisionShape2D" parent="door_1" index="0"]
 position = Vector2(11, -5)

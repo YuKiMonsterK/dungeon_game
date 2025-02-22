@@ -2,7 +2,7 @@ class_name Interactable
 extends Area2D
 
 signal interacted
-@export var dialogue_resource: DialogueResource
+@export var dialogue_resource = "res://dialogue/item.dialogue"
 var dialogue_title : String
 
 func _init():
@@ -15,8 +15,13 @@ func _init():
 
 func _ready():
 	dialogue_title = name
+
 func interact():
 	print("[Interacted] %s" % name)
+	if get_parent().is_class("Node2D"):
+		dialogue_resource = load("res://dialogue/item.dialogue")
+	else:
+		dialogue_resource = load("res://dialogue/character.dialogue")
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_title)
 	interacted.emit()
 

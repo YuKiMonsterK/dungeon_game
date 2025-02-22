@@ -10,7 +10,7 @@ var direction_x = 0
 var position_target = 0
 var attack_combo = 0
 var hurt_target = 0
-
+var in_dialog = false
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var interact_icon = $interactIcon
 @onready var animated_sword = $HitBox/AnimatedSprite2D
@@ -27,10 +27,14 @@ signal attack_flip(flip)
 func _unhandled_input(event : InputEvent):
 	if event.is_action_pressed("interact") and interacting_with:
 		interacting_with.interact()
+		in_dialog = true
 		return
+
 func _physics_process(_delta): #每幀執行
-	interact_icon.visible = interacting_with != null
-	
+	if not in_dialog:
+		interact_icon.visible = interacting_with != null
+	else:
+		interact_icon.visible = false
 	if not animated_sprite_2d.flip_h and not rotating and attack_combo != 2 and animated_sprite_2d.animation != "dead":
 		animated_sword.rotation_degrees = -170
 		rotation_target = 136
@@ -158,7 +162,8 @@ func _input(_event):     #按任意鍵時執行
 		rotating = true
 		var flip = animated_sword.flip_h #劍是否旋轉
 		attack_flip.emit(flip) #傳給怪物
-		
+	if interacting_with and _event.is_action_pressed("ui_accept"):
+		in_dialog = false
 func _on_hurt_box_hurt(_hitbox):
 	Stats.health -= 1
 	if not animated_sprite_2d.flip_h:
