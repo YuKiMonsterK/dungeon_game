@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c04aoaqg467qo"]
+[gd_scene load_steps=17 format=3 uid="uid://c04aoaqg467qo"]
 
 [ext_resource type="PackedScene" uid="uid://ca1stlhdlrhwx" path="res://scenes/player.tscn" id="1_mgiqu"]
 [ext_resource type="Texture2D" uid="uid://dnnpd2c21hcvo" path="res://assets/scene/dungeon_.png" id="2_cmaq5"]
@@ -948,6 +948,8 @@ size = Vector2(14, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c72ds"]
 size = Vector2(20, 27)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lphu8"]
+
 [node name="world" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1019,6 +1021,35 @@ theme_override_fonts/font = ExtResource("9_7y2ym")
 text = "按WASD移動
 左鍵攻擊
 E鍵互動"
+
+[node name="box_2" parent="." instance=ExtResource("6_df118")]
+position = Vector2(-107, -484)
+scale = Vector2(5, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="box_2"]
+position = Vector2(20, 0)
+scale = Vector2(0.57, 1)
+shape = SubResource("RectangleShape2D_lphu8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="box_2"]
+position = Vector2(39.4, -1)
+scale = Vector2(0.57855, 1)
+shape = SubResource("RectangleShape2D_lphu8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="box_2"]
+position = Vector2(62.6, 4)
+scale = Vector2(0.425, 1.435)
+shape = SubResource("RectangleShape2D_lphu8")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="box_2"]
+position = Vector2(64.4, 48)
+scale = Vector2(0.307, 1.69)
+shape = SubResource("RectangleShape2D_lphu8")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="box_2"]
+position = Vector2(64.6, 97)
+scale = Vector2(0.315, 1.715)
+shape = SubResource("RectangleShape2D_lphu8")
 
 [editable path="box_1"]
 [editable path="fireplace_1"]
