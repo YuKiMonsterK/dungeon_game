@@ -1,0 +1,111 @@
+[gd_scene load_steps=19 format=3 uid="uid://baivd2l7lajds"]
+
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="1_q2eqt"]
+[ext_resource type="Texture2D" uid="uid://cx8q6fsgx6ii3" path="res://assets/scene/traps_.png" id="1_w6424"]
+[ext_resource type="Script" path="res://scripts/traps.gd" id="2_026ex"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="2_aeehl"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="3_8jyyo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5devg"]
+atlas = ExtResource("1_w6424")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bcug"]
+atlas = ExtResource("1_w6424")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0iia"]
+atlas = ExtResource("1_w6424")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rhl2"]
+atlas = ExtResource("1_w6424")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jjv0"]
+atlas = ExtResource("1_w6424")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hmdfs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5devg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bcug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0iia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rhl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jjv0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vc8wt"]
+radius = 2.0
+height = 6.0
+
+[sub_resource type="Resource" id="Resource_6hoda"]
+script = ExtResource("2_aeehl")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_vc8wt")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pxkrb"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="Resource" id="Resource_h8vha"]
+script = ExtResource("2_aeehl")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_pxkrb")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7bd3l"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="Resource" id="Resource_yyvp5"]
+script = ExtResource("2_aeehl")
+position = Vector2(0, 2)
+disabled = false
+shape = SubResource("CapsuleShape2D_7bd3l")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_4k3v5"]
+script = ExtResource("3_8jyyo")
+data = {
+"default": [null, null, SubResource("Resource_6hoda"), SubResource("Resource_h8vha"), SubResource("Resource_yyvp5")]
+}
+
+[node name="trap" type="AnimatedSprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_hmdfs")
+autoplay = "default"
+frame_progress = 0.924955
+script = ExtResource("2_026ex")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+
+[node name="AnimatedShape2D" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("1_q2eqt")
+animated_sprite = NodePath("..")
+collision_shape = NodePath("../Area2D/CollisionShape2D")
+shape_frames = SubResource("Resource_4k3v5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
