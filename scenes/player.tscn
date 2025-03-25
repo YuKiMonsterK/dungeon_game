@@ -1,12 +1,12 @@
 [gd_scene load_steps=42 format=3 uid="uid://ca1stlhdlrhwx"]
 
 [ext_resource type="Texture2D" uid="uid://cj2b7orlysxef" path="res://assets/character/fHero_.png" id="1_giyew"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_tqq7h"]
+[ext_resource type="Script" uid="uid://dx36add751sao" path="res://scripts/player.gd" id="1_tqq7h"]
 [ext_resource type="Texture2D" uid="uid://ctfrqybrayp6u" path="res://assets/scene/gdb-keyboard-2.png" id="3_7g5sm"]
-[ext_resource type="Script" path="res://scripts/HitBox.gd" id="3_skbli"]
-[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="5_be8cs"]
+[ext_resource type="Script" uid="uid://d1m4da37upsod" path="res://scripts/HitBox.gd" id="3_skbli"]
+[ext_resource type="Script" uid="uid://dgvb744urhvda" path="res://scripts/HurtBox.gd" id="5_be8cs"]
 [ext_resource type="Texture2D" uid="uid://btu1cnq7e08ns" path="res://assets/character/hero/sword_ [wood].png" id="5_inkg2"]
-[ext_resource type="Script" path="res://scripts/Stats.gd" id="7_67ss2"]
+[ext_resource type="Script" uid="uid://b4r5m0y51y1f7" path="res://scripts/Stats.gd" id="7_67ss2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xafto"]
 atlas = ExtResource("1_giyew")

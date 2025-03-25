@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6fdijn2r2lcs"]
 
-[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/editor/shape_frame_editor.gd" id="1_pmp4u"]
+[ext_resource type="Script" uid="uid://48dbm4v4hugi" path="res://addons/goutte.animated_shape_2d/editor/shape_frame_editor.gd" id="1_pmp4u"]
 [ext_resource type="Texture2D" uid="uid://chl5rhpr6ngqp" path="res://addons/goutte.animated_shape_2d/editor/icons/link.png" id="2_3bsnw"]
 [ext_resource type="Texture2D" uid="uid://hsf5o8ys0vo3" path="res://addons/goutte.animated_shape_2d/editor/icons/remove.png" id="3_bm3kb"]
 [ext_resource type="Texture2D" uid="uid://cbgoa2ilmautt" path="res://addons/goutte.animated_shape_2d/editor/icons/new.png" id="3_j1q7m"]

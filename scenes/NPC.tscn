@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmeesqq24jw5s"]
 
-[ext_resource type="Script" path="res://scripts/NPC.gd" id="1_k7us8"]
-[ext_resource type="Script" path="res://scripts/HitBox.gd" id="2_jci5o"]
-[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="3_5dauj"]
-[ext_resource type="Script" path="res://scripts/Stats.gd" id="4_h5sa6"]
+[ext_resource type="Script" uid="uid://cc4n4dwyv18uy" path="res://scripts/NPC.gd" id="1_k7us8"]
+[ext_resource type="Script" uid="uid://d1m4da37upsod" path="res://scripts/HitBox.gd" id="2_jci5o"]
+[ext_resource type="Script" uid="uid://dgvb744urhvda" path="res://scripts/HurtBox.gd" id="3_5dauj"]
+[ext_resource type="Script" uid="uid://b4r5m0y51y1f7" path="res://scripts/Stats.gd" id="4_h5sa6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t7cfx"]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://baivd2l7lajds"]
 
-[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="1_q2eqt"]
+[ext_resource type="Script" uid="uid://c6rpbngu3yfx5" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="1_q2eqt"]
 [ext_resource type="Texture2D" uid="uid://cx8q6fsgx6ii3" path="res://assets/scene/traps_.png" id="1_w6424"]
-[ext_resource type="Script" path="res://scripts/traps.gd" id="2_026ex"]
-[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="2_aeehl"]
-[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="3_8jyyo"]
+[ext_resource type="Script" uid="uid://de8l6gil47ny1" path="res://scripts/traps.gd" id="2_026ex"]
+[ext_resource type="Script" uid="uid://d2y8uwahu72j5" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="2_aeehl"]
+[ext_resource type="Script" uid="uid://x8uqhvulkxei" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="3_8jyyo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5devg"]
 atlas = ExtResource("1_w6424")

@@ -176,4 +176,3 @@ func _on_animated_sprite_2d_animation_finished():
 		animated_sword.rotation_degrees = -90
 		animated_sword.position.y = animated_sprite_2d.position.y + 10
 		animated_sprite_2d.visible = false
-

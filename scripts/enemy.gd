@@ -13,4 +13,3 @@ enum Direction{
 @export var max_speed : float = 30
 @onready var graphics = $Graphics
 @onready var collision_shape_2d = $CollisionShape2D
-

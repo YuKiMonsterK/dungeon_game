@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://ctrhhrmqjqepo"]
 
 [ext_resource type="PackedScene" uid="uid://vdhtldih7p22" path="res://scenes/enemy.tscn" id="1_8dta4"]
-[ext_resource type="Script" path="res://scripts/goblin.gd" id="2_7heqy"]
+[ext_resource type="Script" uid="uid://cpry7hmujr6ui" path="res://scripts/goblin.gd" id="2_7heqy"]
 [ext_resource type="Texture2D" uid="uid://eseh3u0waq5t" path="res://assets/character/goblin_.png" id="2_ua3f7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2civ"]
